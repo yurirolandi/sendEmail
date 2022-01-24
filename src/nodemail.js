@@ -1,6 +1,6 @@
 const mailer = require("nodemailer");
 
-module.exports = (nome, mensagem) => {
+module.exports = (nome, email, subject, message) => {
     const smtpTransport = mailer.createTransport({
         service: 'gmail',
         auth: {
@@ -10,10 +10,10 @@ module.exports = (nome, mensagem) => {
     })
 
     const mail = {
-        from: `yuri Teste <${process.env.EMAIL}>`,
+        from: `${email} - <${process.env.EMAIL}>`,
         to: process.env.EMAIL_TO,
-        subject: `${nome} te enviou uma mensagem`,
-        text: mensagem,
+        subject: `${nome} - ${subject}`,
+        text: message,
     }
 
     return new Promise((resolve, reject) => {
