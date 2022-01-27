@@ -15,9 +15,8 @@ app.get('/', (req, res, next) => {
 })
 
 app.post('/send', (req, res, next) => {
-    const { nome, email, subject, message } = req.body;
-    console.log(req);
-    require("./nodemail")(nome, email, subject, message)
+    const { nome, email, subject, mensagem } = req.body;
+    require("./nodemail")(nome, email, subject, mensagem)
         .then(response => res.json(response))
         .catch(error => res.json(error));
 })
